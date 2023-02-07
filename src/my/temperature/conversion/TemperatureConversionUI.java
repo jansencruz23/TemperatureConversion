@@ -24,7 +24,7 @@ public class TemperatureConversionUI extends javax.swing.JFrame {
         cb1 = new javax.swing.JComboBox<>();
         cb2 = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lblFormula = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -91,8 +91,8 @@ public class TemperatureConversionUI extends javax.swing.JFrame {
         jLabel3.setText("Formula");
         jLabel3.setOpaque(true);
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setText("(0°C × 9/5) + 32 = 32°F");
+        lblFormula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblFormula.setText("(0°C × 9/5) + 32 = 32°F");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 102, 102));
@@ -119,7 +119,7 @@ public class TemperatureConversionUI extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4)))
+                        .addComponent(lblFormula)))
                 .addContainerGap(28, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -147,7 +147,7 @@ public class TemperatureConversionUI extends javax.swing.JFrame {
                         .addGap(45, 45, 45)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel4))
+                    .addComponent(lblFormula))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addContainerGap())
@@ -192,12 +192,14 @@ public class TemperatureConversionUI extends javax.swing.JFrame {
             c = Double.parseDouble(txtFirst.getText());
             f = ctof(c);
             txtSecond.setText(df.format(f));
+            lblFormula.setText(String.format("(%s°C × 9/5) + 32 = %s°F", txtFirst.getText(), txtSecond.getText()));
         }
         else{
             cb2.setSelectedIndex(0);
             f = Double.parseDouble(txtFirst.getText());
             c = ftoc(f);
             txtSecond.setText(df.format(c));
+            lblFormula.setText(String.format("(%s°F − 32) × 5/9 = %s°C", txtFirst.getText(), txtSecond.getText()));
         }            
     }//GEN-LAST:event_cb1ActionPerformed
 
@@ -228,10 +230,12 @@ public class TemperatureConversionUI extends javax.swing.JFrame {
                 c = Double.parseDouble(txt);
                 f = ctof(c);
                 txtSecond.setText(df.format(f));
+                lblFormula.setText(String.format("(%s°C × 9/5) + 32 = %s°F", txtFirst.getText(), txtSecond.getText()));
             }else{
                 f = Double.parseDouble(txt);
                 c = ftoc(f);
                 txtSecond.setText(df.format(c));
+                lblFormula.setText(String.format("(%s°F − 32) × 5/9 = %s°C", txtFirst.getText(), txtSecond.getText()));
             }
         }
     }//GEN-LAST:event_txtFirstKeyReleased
@@ -252,10 +256,12 @@ public class TemperatureConversionUI extends javax.swing.JFrame {
                 c = Double.parseDouble(txt);
                 f = ctof(c);
                 txtFirst.setText(df.format(f));
+                lblFormula.setText(String.format("(%s°F − 32) × 5/9 = %s°C", txtFirst.getText(), txtSecond.getText()));
             }else{
                 f = Double.parseDouble(txt);
                 c = ftoc(f);
                 txtFirst.setText(df.format(c));
+                lblFormula.setText(String.format("(%s°C × 9/5) + 32 = %s°F", txtFirst.getText(), txtSecond.getText()));
             }
         }
     }//GEN-LAST:event_txtSecondKeyReleased
@@ -274,9 +280,9 @@ public class TemperatureConversionUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblFormula;
     private javax.swing.JTextField txtFirst;
     private javax.swing.JTextField txtSecond;
     // End of variables declaration//GEN-END:variables
