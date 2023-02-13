@@ -184,9 +184,8 @@ public class TemperatureConversionUI extends javax.swing.JFrame {
     }
     
     private void displayFormula(){
-        //error null string
-        String txt1 = dff.format(Double.parseDouble(txtFirst.getText().trim()));
-        String txt2 = dff.format(Double.parseDouble(txtSecond.getText().trim()));
+        String txt1 = txtFirst.getText().trim();
+        String txt2 = txtSecond.getText().trim();
         
         if(txt1.equals("") || txt1.equals("-") || txt2.equals("") || txt2.equals("-"))
         {
@@ -195,6 +194,9 @@ public class TemperatureConversionUI extends javax.swing.JFrame {
         }
         else
         {
+            txt1 = dff.format(Double.parseDouble(txt1));
+            txt2 = dff.format(Double.parseDouble(txt2));
+            
             if(cb1.getSelectedIndex() == 0)
                 lblFormula.setText(String.format("(%s°C × 9/5) + 32 = %s°F", txt1 , txt2));
             else
@@ -208,18 +210,26 @@ public class TemperatureConversionUI extends javax.swing.JFrame {
         if(cb1.getSelectedIndex() == 0)
         {
             cb2.setSelectedIndex(1);
-            c = Double.parseDouble(txtFirst.getText());
-            f = ctof(c);
-            txtSecond.setText(df.format(f));
-            displayFormula();
+            try
+            {
+                c = Double.parseDouble(txtFirst.getText());
+                f = ctof(c);
+                txtSecond.setText(df.format(f));
+                displayFormula();
+            }
+            catch(Exception ex){}
         }
         else
         {
             cb2.setSelectedIndex(0);
-            f = Double.parseDouble(txtFirst.getText());
-            c = ftoc(f);
-            txtSecond.setText(df.format(c));
-            displayFormula();
+            try
+            {
+                f = Double.parseDouble(txtFirst.getText());
+                c = ftoc(f);
+                txtSecond.setText(df.format(c));
+                displayFormula();
+            }
+            catch(Exception ex){}
         }            
     }//GEN-LAST:event_cb1ActionPerformed
 
