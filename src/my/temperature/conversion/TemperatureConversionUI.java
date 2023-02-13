@@ -184,10 +184,11 @@ public class TemperatureConversionUI extends javax.swing.JFrame {
     }
     
     private void displayFormula(){
-        String txt1 = txtFirst.getText().trim();
-        String txt2 = txtSecond.getText().trim();
+        //error null string
+        String txt1 = dff.format(Double.parseDouble(txtFirst.getText().trim()));
+        String txt2 = dff.format(Double.parseDouble(txtSecond.getText().trim()));
         
-        if(txtFirst.getText().equals("") || txtFirst.getText().equals("-"))
+        if(txt1.equals("") || txt1.equals("-") || txt2.equals("") || txt2.equals("-"))
         {
             String formulaText = (cb1.getSelectedIndex() == 0) ? "(°C × 9/5) + 32 = °F" : "(°F − 32) × 5/9 = °C";
             lblFormula.setText(formulaText);
@@ -243,8 +244,8 @@ public class TemperatureConversionUI extends javax.swing.JFrame {
     private void txtFirstKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFirstKeyReleased
         double c,f;
         String txt;
-        txt = txtFirst.getText();
-        
+        txt = txtFirst.getText().trim();
+
         if(txt.equals("") || txt.equals("-"))
         {
             txtSecond.setText("");
@@ -283,6 +284,7 @@ public class TemperatureConversionUI extends javax.swing.JFrame {
         {
             txtFirst.setText("");
             txtSecond.requestFocus();
+            displayFormula();
         }
         else
         {
